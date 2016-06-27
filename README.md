@@ -1,0 +1,2 @@
+# ProjectWizard
+使用jinja2和PyQt创建的Qt的工程向导工具
