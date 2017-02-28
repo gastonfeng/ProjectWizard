@@ -5,9 +5,16 @@
 日期：2016-6-14
 概述：列举之前向导的用户设定
 '''
-import app_datas
-from PyQt4.QtGui import QWizardPage,QHBoxLayout,QVBoxLayout,QLabel,QLineEdit,QPushButton,QListWidget
-from PyQt4.QtCore import QStringList,Qt
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QHBoxLayout
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QListWidget
+from PyQt5.QtWidgets import QVBoxLayout
+from PyQt5.QtWidgets import QWizardPage
+
+from ProjectWizard import app_datas
+from ProjectWizard.pages.baseinfo import QStringList
+
 
 class PanelPage(QWizardPage):
 

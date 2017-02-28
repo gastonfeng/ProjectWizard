@@ -5,11 +5,15 @@
 日期：2016-6-13
 概述：用来弹出向导
 '''
-
-from PyQt4.QtGui import QWizard,QWizardPage,QPixmap
-from pages import baseinfo,qtlibrary,frameworklibrary,panel
 import os
-import app_datas
+
+from PyQt5.QtWidgets import QWizard
+
+from ProjectWizard import app_datas
+from ProjectWizard.pages import baseinfo
+from ProjectWizard.pages import frameworklibrary
+from ProjectWizard.pages import panel
+from ProjectWizard.pages import qtlibrary
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -43,5 +47,5 @@ class MyWizard(QWizard):
         super(MyWizard, self).accept()
 
     def validateCurrentPage(self):
-        print self.currentId()
+        print(self.currentId())
         return super(MyWizard, self).validateCurrentPage()

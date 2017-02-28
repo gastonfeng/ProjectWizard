@@ -5,9 +5,13 @@
 日期：2016-6-14
 概述：qt库选择
 '''
+from PyQt5.QtWidgets import QCheckBox
+from PyQt5.QtWidgets import QGridLayout
+from PyQt5.QtWidgets import QVBoxLayout
+from PyQt5.QtWidgets import QWizardPage
 
-from PyQt4.QtGui import QWizardPage,QHBoxLayout,QVBoxLayout,QLabel,QLineEdit,QPushButton,QCheckBox,QGridLayout
-import app_datas
+from ProjectWizard import app_datas
+
 
 class QtLibraryPage(QWizardPage):
 

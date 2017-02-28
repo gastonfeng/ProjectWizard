@@ -1,20 +1,22 @@
 #coding:utf-8
-import sys
 import os
-import app_datas
-import wizard
+import sys
 
-from PyQt4.QtGui import QApplication
-from PyQt4.QtCore import QTextCodec
+from PyQt5.QtCore import QTextCodec
+from PyQt5.QtWidgets import QApplication
+
+from ProjectWizard import app_datas
+from ProjectWizard import wizard
+
 
 def main():
     app = QApplication(sys.argv)
     tc = QTextCodec.codecForName('utf-8')
-    QTextCodec.setCodecForCStrings(tc)
+    # QTextCodec.setCodecForCStrings(tc)
     QTextCodec.setCodecForLocale(tc)
-    QTextCodec.setCodecForTr(tc)
+    # QTextCodec.setCodecForTr(tc)
     app_datas.g_pwd = os.getcwd()
-    print app_datas.g_pwd
+    print(app_datas.g_pwd)
 
     #遍历目录
     tmpdirs = os.listdir(app_datas.g_pwd + os.sep + 'templates')

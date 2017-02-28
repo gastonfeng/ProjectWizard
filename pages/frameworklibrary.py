@@ -6,16 +6,23 @@
 概述：框架模块选择
 '''
 
-import app_datas
-import os
-import json
-from PyQt4.QtGui import QWizardPage,QHBoxLayout,QVBoxLayout,QLabel,QLineEdit,QPushButton,QCheckBox,QGridLayout,QFileDialog
-from PyQt4.QtCore import SIGNAL
+from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtWidgets import QCheckBox
+from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QGridLayout
+from PyQt5.QtWidgets import QHBoxLayout
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QLineEdit
+from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QVBoxLayout
+from PyQt5.QtWidgets import QWizardPage
+
+from ProjectWizard import app_datas
+
 
 class FrameworkLibraryPage(QWizardPage):
-
     def __init__(self):
-        super(FrameworkLibraryPage,self).__init__()
+        super(FrameworkLibraryPage, self).__init__()
         self.completed = False
         self.setTitle('框架模块')
         self.setSubTitle('设置框架的模块引用')
@@ -77,5 +84,5 @@ class FrameworkLibraryPage(QWizardPage):
         ret = self.test_completed()
         if ret != self.completed:
             self.completed = ret
-            self.emit(SIGNAL("completeChanged()"))
+            self.emit(pyqtSignal("completeChanged()"))
         return ret

@@ -6,11 +6,24 @@
 概述：工程信息
 '''
 
-from PyQt4.QtGui import QWizard,QWizardPage,QHBoxLayout,QVBoxLayout,QLabel,QLineEdit,QPushButton,QFileDialog,QComboBox
-from PyQt4.QtCore import QString,QStringList,SIGNAL
-import app_datas
-import os
 import json
+import os
+
+from PyQt5.QtWidgets import QComboBox
+from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QHBoxLayout
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QLineEdit
+from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QVBoxLayout
+from PyQt5.QtWidgets import QWizardPage
+
+from ProjectWizard import app_datas
+
+
+class QStringList(object):
+    pass
+
 
 class BaseInfoPage(QWizardPage):
 
@@ -50,9 +63,9 @@ class BaseInfoPage(QWizardPage):
         lable3 = QLabel('源模板  ：')
         self.cb_wizard_type = QComboBox()
         items = QStringList()
-        for key in app_datas.g_templates:
-            items.append(key)
-        self.cb_wizard_type.addItems(items)
+        # for key in app_datas.g_templates:
+        # items.append(key)
+        # self.cb_wizard_type.addItems(items)
         row3.addWidget(lable3)
         row3.addWidget(self.cb_wizard_type)
         row3.addStretch(0)
@@ -67,9 +80,9 @@ class BaseInfoPage(QWizardPage):
         self.et_project_location.setText(path)
 
     def test_completed(self):
-        project_name = self.et_project_name.text().trimmed()
-        project_dir = self.et_project_location.text().trimmed()
-        return not project_name.isEmpty() and not project_dir.isEmpty()
+        project_name = self.et_project_name.text()
+        project_dir = self.et_project_location.text()
+        return True  # not project_name.isEmpty() and not project_dir.isEmpty()
 
     def on_text_changed(self,text):
         self.isComplete()
@@ -78,18 +91,18 @@ class BaseInfoPage(QWizardPage):
         ret = self.test_completed()
         if ret != self.completed:
             self.completed = ret
-            self.emit(SIGNAL("completeChanged()"))
+            # self.emit(pyqtSignal("completeChanged()"))
         return ret
 
     def validatePage(self):
-        project_name = self.et_project_name.text().trimmed()
-        project_dir = self.et_project_location.text().trimmed()
+        project_name = self.et_project_name.text()
+        project_dir = self.et_project_location.text()
         wizard_template = self.cb_wizard_type.currentText()
-        app_datas.g_configurations['project_name'] = str(project_name.toUtf8())
-        app_datas.g_configurations['project_uname'] = str(project_name.toUpper().toUtf8())
-        app_datas.g_configurations['project_lname'] = str(project_name.toLower().toUtf8())
-        app_datas.g_configurations['project_location'] = str(project_dir.toUtf8())
-        app_datas.g_configurations['template_name'] = str(wizard_template.toUtf8())
+        app_datas.g_configurations['project_name'] = str(project_name)
+        app_datas.g_configurations['project_uname'] = str(project_name)
+        app_datas.g_configurations['project_lname'] = str(project_name)
+        app_datas.g_configurations['project_location'] = str(project_dir)
+        app_datas.g_configurations['template_name'] = str(wizard_template)
 
         template_name = app_datas.g_configurations['template_name']
         template_dir = app_datas.g_pwd + os.sep + 'templates' + os.sep + template_name
